@@ -1,0 +1,61 @@
+<Window xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:vm="using:E_Shop_Test.ViewModels"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        mc:Ignorable="d" d:DesignWidth="450" d:DesignHeight="450"
+        x:Class="E_Shop_Test.Views.RedactWindow"
+        Title="RedactWindow" MaxWidth="450" MaxHeight="450">
+  <Window.Styles>
+    <Style Selector="Label">
+      <Setter Property="FontSize"
+              Value="12"/>
+    </Style>
+    <Style Selector="Button">
+      <Setter Property="Background"
+              Value="#bbfcf6"/>
+      <Setter Property="BorderThickness"
+              Value="3"/>
+      <Setter Property="BorderBrush"
+              Value="#31f5e3"/>
+    </Style>
+    <Style Selector="TextBox">
+      <Setter Property="BorderBrush"
+              Value="#31f5e3"/>
+      <Setter Property="BorderThickness"
+              Value="3"/>
+    </Style>
+    <Style Selector="ComboBox">
+      <Setter Property="BorderBrush"
+              Value="#31f5e3"/>
+      <Setter Property="BorderThickness"
+              Value="3"/>
+    </Style>
+  </Window.Styles>
+  <Grid>
+    <Grid.ColumnDefinitions>
+      <ColumnDefinition/>
+      <ColumnDefinition/>
+    </Grid.ColumnDefinitions>
+    <Grid.RowDefinitions>
+      <RowDefinition/>
+      <RowDefinition/>
+    </Grid.RowDefinitions>
+    <StackPanel Grid.Column="1" Grid.Row="0">
+      <TextBox Height="30" Margin="10" Text="{Binding Products.Name}"/>
+      <TextBox Height="30" Margin="10" Text="{Binding Products.Article}"/>
+      <TextBox Height="30" Margin="10" Text="{Binding Products.Cost}"/>
+      <TextBox Height="30" Margin="10" Text="{Binding Products.Count}"/>
+      <TextBox Height="30" Margin="10" Text="{Binding Products.Description}" AcceptsReturn="True" TextWrapping="Wrap"/>
+    </StackPanel>
+    <StackPanel Grid.Row="0">
+      <Label Height="30" Margin="10" Content="Название"/>
+      <Label Height="30" Margin="10" Content="Артикул"/>
+      <Label Height="30" Margin="10" Content="Цена"/>
+      <Label Height="30" Margin="10" Content="Количество"/>
+      <Label Height="30" Margin="10" Content="Описание"/>
+    </StackPanel>
+    <Button x:Name="ChangePicBtn" Command="{Binding ChangeProdPicture}" VerticalAlignment="Top" Margin="70" Grid.Row="1" Height="35" Width="200" Content="Добавить фото" HorizontalContentAlignment="Center" Grid.ColumnSpan="2" HorizontalAlignment="Center"/>
+    <Button VerticalAlignment="Bottom" Command="{Binding SendRedactedData}" Margin="20" Grid.Row="1" Height="35" Width="200" Content="Редактировать" HorizontalContentAlignment="Center" Grid.ColumnSpan="2" HorizontalAlignment="Center"/>
+  </Grid>
+</Window>

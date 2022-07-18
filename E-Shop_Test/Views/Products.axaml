@@ -1,0 +1,84 @@
+<Window xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:vm="using:E_Shop_Test.ViewModels"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:ei="http://schemas.microsoft.com/expression/2010/interactions"
+        xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
+        xmlns:cmd="http://www.galasoft.ch/mvvmlight"
+        xmlns:local="using:E_Shop_Test.Views"
+        mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+        x:Class="E_Shop_Test.Views.Products"
+        Title="Products"
+        >
+  <Window.Styles>
+    <Style Selector="Label">
+      <Setter Property="FontSize"
+              Value="12"/>
+    </Style>
+    <Style Selector="Button">
+      <Setter Property="Background"
+              Value="#bbfcf6"/>
+      <Setter Property="BorderThickness"
+              Value="3"/>
+      <Setter Property="BorderBrush"
+              Value="#31f5e3"/>
+    </Style>
+    <Style Selector="TextBox">
+      <Setter Property="BorderBrush"
+              Value="#31f5e3"/>
+      <Setter Property="BorderThickness"
+              Value="3"/>
+    </Style>
+    <Style Selector="ComboBox">
+      <Setter Property="BorderBrush"
+              Value="#31f5e3"/>
+      <Setter Property="BorderThickness"
+              Value="3"/>
+    </Style>
+  </Window.Styles>
+  <Grid>
+    <Grid.ColumnDefinitions>
+      <ColumnDefinition Width="100"/>
+      <ColumnDefinition/>
+    </Grid.ColumnDefinitions>
+    <Grid.RowDefinitions>
+      <RowDefinition Height="100"/>
+      <RowDefinition/>
+    </Grid.RowDefinitions>
+    <ScrollViewer Grid.Column="1" Grid.Row="1">
+      <ListBox x:Name="ProdListBox" Height="550" Width="400" HorizontalAlignment="Center" Items="{Binding Prods}" SelectedItem="{Binding SelectedProduct}" >
+        <ListBox.ItemTemplate  >
+          <DataTemplate >
+            <Grid >
+              <Grid.ColumnDefinitions>
+                  <ColumnDefinition/>
+                  <ColumnDefinition/>
+              </Grid.ColumnDefinitions>
+              <Grid.RowDefinitions>
+                <RowDefinition/>
+                <RowDefinition/>
+                <RowDefinition/>
+                <RowDefinition/>
+              </Grid.RowDefinitions>
+                <Image Height="100" Width="100" Stretch="Uniform" Grid.RowSpan="4" Grid.Column="0" Source="{Binding ProdImage}"/>
+                <Label Content="{Binding ID}"/>
+                <Label Content="{Binding Name}" Grid.Column="1" Grid.Row="0"/>
+                <Label Content="{Binding Cost}" Grid.Column="1" Grid.Row="1"/>
+                <Button Content="В корзину" HorizontalAlignment="Center" Grid.Column="1" Grid.Row="2" IsEnabled="False"/>
+                
+              </Grid>
+          </DataTemplate>
+        </ListBox.ItemTemplate>
+      </ListBox>
+    </ScrollViewer>
+    <StackPanel Grid.Row="1">
+      <TextBox Margin="5" Text="{Binding SearchProduct}"/>
+      <ComboBox Margin="5" Items="{Binding ProductTypes}"/>
+      <Button Command="{Binding ProductSelectedCommand}" Content="Подробнее" CommandParameter="{Binding SelectedProduct.ID}"/>
+      <Button Content="Удалить" Command="{Binding DeleteProductCommand}" IsEnabled="{Binding IsAdmin}" IsVisible="{Binding IsAdmin}" CommandParameter="{Binding SelectedProduct.ID}"/>
+    </StackPanel>
+    <Button Grid.Row="3" Content="Назад" VerticalAlignment="Bottom" HorizontalAlignment="Left" Grid.Column="1" Command="{Binding PageDownCommand}"/>
+    <Button Grid.Row="3" Content="Вперед" VerticalAlignment="Bottom" HorizontalAlignment="Right" Grid.Column="1" Command="{Binding PageUpCommand}"/>
+  </Grid>
+</Window>

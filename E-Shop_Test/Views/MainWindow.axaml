@@ -1,0 +1,54 @@
+<Window xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:vm="using:E_Shop_Test.ViewModels"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        mc:Ignorable="d" d:DesignWidth="350" d:DesignHeight="400"
+        x:Class="E_Shop_Test.Views.MainWindow"
+        Icon="/Assets/avalonia-logo.ico"
+        Title="E_Shop_Test" MaxHeight="400" MaxWidth="350">
+
+    <Window.DataContext>
+        <vm:MainWindowViewModel/>
+    </Window.DataContext>
+  <Window.Styles>
+    <Style Selector="Label">
+      <Setter Property="FontSize" 
+              Value="12"/>
+    </Style>
+    <Style Selector="Button.H1">
+      <Setter Property="Background" 
+              Value="#bbfcf6"/>
+      <Setter Property="BorderThickness" 
+              Value="3"/>
+      <Setter Property="BorderBrush" 
+              Value="#31f5e3"/>
+    </Style>
+    <Style Selector="TextBox">
+      <Setter Property="BorderBrush" 
+              Value="#31f5e3"/>
+      <Setter Property="BorderThickness" 
+              Value="3"/>
+    </Style>
+  </Window.Styles>
+  <StackPanel>
+    <Label HorizontalAlignment="Center" 
+           FontSize="20" Content="Авторизация">
+    </Label>
+    <StackPanel Margin="40">
+
+      <TextBox Text="{Binding Login}" Watermark="Логин" />
+      <Label Content="   " />
+      <TextBox Text="{Binding Password}"  Watermark="Пароль" PasswordChar="*" />
+    </StackPanel>
+    <Button Classes="H1" 
+            HorizontalAlignment="Center" 
+            Height="40" 
+            Width="170" 
+            Margin="40" 
+            Content="Авторизоваться" 
+            HorizontalContentAlignment="Center"
+            Command="{Binding AutorizationCommand}"/>
+  </StackPanel>
+
+</Window>

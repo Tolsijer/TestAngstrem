@@ -1,0 +1,63 @@
+<Window xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:vm="using:E_Shop_Test.ViewModels"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        mc:Ignorable="d" d:DesignWidth="450" d:DesignHeight="450"
+        x:Class="E_Shop_Test.Views.ProductInfo"
+        Title="ProductInfo" MaxHeight="450" MaxWidth="450">
+
+  <Window.Styles>
+    <Style Selector="Label">
+      <Setter Property="FontSize"
+              Value="12"/>
+    </Style>
+    <Style Selector="Button">
+      <Setter Property="Background"
+              Value="#bbfcf6"/>
+      <Setter Property="BorderThickness"
+              Value="3"/>
+      <Setter Property="BorderBrush"
+              Value="#31f5e3"/>
+    </Style>
+    <Style Selector="TextBox">
+      <Setter Property="BorderBrush"
+              Value="#31f5e3"/>
+      <Setter Property="BorderThickness"
+              Value="3"/>
+    </Style>
+    <Style Selector="ComboBox">
+      <Setter Property="BorderBrush"
+              Value="#31f5e3"/>
+      <Setter Property="BorderThickness"
+              Value="3"/>
+    </Style>
+  </Window.Styles>
+  <Grid>
+    <Grid.ColumnDefinitions>
+      <ColumnDefinition/>
+      <ColumnDefinition/>
+    </Grid.ColumnDefinitions>
+    <Grid.RowDefinitions>
+      <RowDefinition Height="100"/>
+      <RowDefinition/>
+    </Grid.RowDefinitions>
+    <Image Grid.Row="0" Grid.ColumnSpan="2" HorizontalAlignment="Center" Stretch="Uniform" Source="{Binding ProductImage}"/>
+    <StackPanel Grid.Column="1" Grid.Row="1">   
+      <Label Content="{Binding Products.Name}"/>
+      <Label Content="{Binding Products.Article}"/>
+      <Label Content="{Binding Products.Cost}"/>
+      <Label Content="{Binding Products.Count}"/>
+      <TextBlock Text="{Binding Products.Description}" TextWrapping="Wrap"/>
+    </StackPanel>
+    <StackPanel Grid.Row="1">
+      <Label Content="Название"/>
+      <Label Content="Артикул"/>
+      <Label Content="Цена"/>
+      <Label Content="Количество"/>
+      <Label Content="Описание"/>
+    </StackPanel>
+    <Button Grid.Row="1" IsEnabled="{Binding IsAdmin}" IsVisible="{Binding IsAdmin}" Command="{Binding RedactCommand}" CommandParameter=""  Height="35" Width="200" Content="Редактировать" HorizontalContentAlignment="Center" Grid.ColumnSpan="2" HorizontalAlignment="Center"/>
+  </Grid>
+  
+</Window>
